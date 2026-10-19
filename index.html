@@ -1,100 +1,993 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#087443">
-<title>LCNB National Bank | Digital Banking</title>
-<style>
-:root{--green:#087443;--dark:#063b2b;--navy:#10264c;--bg:#f3f7f4;--text:#17251f;--muted:#748078;--white:#fff}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-header{background:var(--white);padding:17px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e5ece7}
-.brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--green);font-size:18px}
-.logo{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:var(--green);color:white;font-weight:900}
-.avatar{width:38px;height:38px;border-radius:50%;background:#e1f1e7;display:grid;place-items:center;color:var(--green);font-weight:800}
-main{max-width:760px;margin:auto;padding:22px 17px 40px}
-.hello{font-size:14px;color:var(--muted);margin-bottom:6px}
-h1{font-size:25px;margin:0 0 20px}
-.balance{background:linear-gradient(135deg,#142e59,#0a1934);color:white;border-radius:22px;padding:24px;box-shadow:0 10px 24px #12254820}
-.balance-top{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:#d5dfef}
-.balance-amount{font-size:34px;font-weight:750;letter-spacing:-1px;margin:17px 0 8px;overflow-wrap:anywhere}
-.account-no{font-size:13px;color:#d5dfef}
-.pill{font-size:12px;background:#ffffff1c;border-radius:30px;padding:7px 10px}
-.actions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:22px 0}
-.action{border:0;background:white;border-radius:15px;padding:15px 5px;color:var(--green);font-size:12px;font-weight:700;box-shadow:0 2px 8px #163b2610;cursor:pointer}
-.action span{display:block;font-size:23px;margin-bottom:8px}
-.section-title{display:flex;justify-content:space-between;align-items:center;margin:24px 0 13px}
-.section-title h2{font-size:18px;margin:0}
-.small{font-size:12px;color:var(--green)}
-.panel{background:white;border-radius:17px;padding:17px;box-shadow:0 2px 9px #163b260a}
-.statrow{display:flex;justify-content:space-between;gap:12px;margin:10px 0}
-.muted{color:var(--muted);font-size:13px}
-.tx{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid #edf1ee}
-.tx:last-child{border-bottom:0;padding-bottom:0}
-.txicon{width:42px;height:42px;flex-shrink:0;display:grid;place-items:center;border-radius:13px;background:#e8f5ec;font-size:19px}
-.txinfo{flex:1;min-width:0}
-.txinfo strong{display:block;font-size:14px;margin-bottom:4px}
-.txinfo small{font-size:12px;color:var(--muted)}
-.amount{font-size:14px;font-weight:750;white-space:nowrap}
-.income{color:var(--green)}.outcome{color:#243448}
-.notice{font-size:12px;line-height:1.5;color:#52645a;background:#e7f2ea;padding:13px;border-radius:12px;margin-top:20px}
-footer{text-align:center;color:var(--muted);font-size:12px;padding:15px}
-.modal{display:none;position:fixed;inset:0;background:#061b12a6;z-index:5;padding:20px;align-items:center;justify-content:center}
-.modal.open{display:flex}
-.dialog{background:white;border-radius:20px;padding:23px;width:100%;max-width:420px}
-.dialog h2{margin:0 0 8px;font-size:21px}
-.dialog p{color:var(--muted);font-size:13px;line-height:1.5}
-label{display:block;font-size:13px;font-weight:700;margin:15px 0 7px}
-input{width:100%;padding:13px;border:1px solid #d8e2db;border-radius:10px;font:inherit}
-.btn{width:100%;padding:13px;border:0;border-radius:11px;background:var(--green);color:white;font-weight:750;font-size:15px;margin-top:16px;cursor:pointer}
-.cancel{background:#edf2ee;color:#243b2e;margin-top:9px}
-@media(max-width:360px){.balance-amount{font-size:28px}.actions{gap:6px}.action{font-size:11px;padding:12px 2px}main{padding:18px 12px}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#087b46">
+  <title>Pacidexunion Banking | Dashboard</title>
+  <style>
+    :root {
+      --green: #087b46;
+      --dark-green: #075b36;
+      --light-green: #e9f7ef;
+      --background: #f4f7f5;
+      --white: #ffffff;
+      --text: #19251f;
+      --muted: #758179;
+      --border: #e3eae5;
+      --red: #c94343;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Arial, sans-serif;
+      background: var(--background);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    button, input, select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .topbar {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      min-width: 0;
+    }
+
+    .logo {
+      background: var(--green);
+      color: white;
+      width: 43px;
+      height: 43px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      font-size: 23px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .brand h1 {
+      font-size: 17px;
+      color: var(--dark-green);
+    }
+
+    .brand p {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    .profile {
+      background: var(--light-green);
+      color: var(--green);
+      padding: 10px 12px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 225px minmax(0, 1fr);
+      max-width: 1450px;
+      margin: auto;
+      min-height: calc(100vh - 76px);
+    }
+
+    .sidebar {
+      padding: 28px 17px;
+      background: var(--white);
+      border-right: 1px solid var(--border);
+    }
+
+    .menu-label {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      margin: 8px 12px 14px;
+    }
+
+    .nav-button {
+      border: 0;
+      background: transparent;
+      color: #58665d;
+      width: 100%;
+      text-align: left;
+      padding: 14px 13px;
+      margin-bottom: 6px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-button span {
+      display: inline-block;
+      width: 28px;
+    }
+
+    .nav-button.active,
+    .nav-button:hover {
+      background: var(--light-green);
+      color: var(--green);
+    }
+
+    .sidebar-note {
+      margin: 35px 5px 0;
+      background: #f3f8f4;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    main {
+      padding: 30px 4%;
+      min-width: 0;
+    }
+
+    .welcome {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 24px;
+    }
+
+    .welcome h2 {
+      font-size: 26px;
+      letter-spacing: -0.7px;
+    }
+
+    .welcome p {
+      color: var(--muted);
+      margin-top: 7px;
+      font-size: 14px;
+    }
+
+    .date-label {
+      font-size: 12px;
+      color: var(--muted);
+      text-align: right;
+    }
+
+    .demo-banner {
+      padding: 12px 15px;
+      border: 1px solid #b8e4c9;
+      background: #eefaf2;
+      color: #17663c;
+      border-radius: 11px;
+      font-size: 12px;
+      line-height: 1.6;
+      margin-bottom: 22px;
+    }
+
+    .balance-card {
+      padding: 27px;
+      color: white;
+      border-radius: 19px;
+      background: linear-gradient(125deg, #087b46, #07532f);
+      box-shadow: 0 12px 28px rgba(8, 123, 70, 0.13);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 22px;
+    }
+
+    .balance-card::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 50%;
+      right: -70px;
+      top: -110px;
+      box-shadow: 0 0 0 25px rgba(255,255,255,.035),
+                  0 0 0 50px rgba(255,255,255,.025);
+    }
+
+    .balance-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .balance-heading p {
+      color: #d5efe0;
+      font-size: 13px;
+    }
+
+    .demo-tag {
+      font-size: 10px;
+      padding: 6px 9px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.35);
+    }
+
+    .balance {
+      font-size: clamp(29px, 5vw, 42px);
+      font-weight: 750;
+      letter-spacing: -1.3px;
+      margin: 14px 0 23px;
+      overflow-wrap: anywhere;
+      position: relative;
+      z-index: 1;
+    }
+
+    .balance-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .account-label {
+      font-size: 11px;
+      color: #c5e7d2;
+      margin-bottom: 6px;
+    }
+
+    .account-value {
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .status {
+      background: rgba(255,255,255,.14);
+      padding: 8px 11px;
+      border-radius: 9px;
+      font-size: 11px;
+      white-space: nowrap;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 15px;
+      margin-bottom: 27px;
+    }
+
+    .stat-card {
+      background: var(--white);
+      padding: 19px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      min-width: 0;
+    }
+
+    .stat-icon {
+      width: 37px;
+      height: 37px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      background: var(--light-green);
+      margin-bottom: 13px;
+      font-size: 18px;
+    }
+
+    .stat-card p {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 7px;
+    }
+
+    .stat-card h3 {
+      font-size: clamp(16px, 2.5vw, 22px);
+      overflow-wrap: anywhere;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 15px;
+    }
+
+    .section-heading h3 {
+      font-size: 18px;
+    }
+
+    .small-button {
+      border: 0;
+      background: var(--light-green);
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 10px 13px;
+      border-radius: 8px;
+    }
+
+    .transactions {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 28px;
+    }
+
+    .transaction {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 17px 19px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .transaction:last-child {
+      border-bottom: 0;
+    }
+
+    .transaction-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .transaction-icon {
+      display: grid;
+      place-items: center;
+      background: #f0f5f1;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      flex-shrink: 0;
+      font-size: 18px;
+    }
+
+    .transaction-name {
+      font-size: 13px;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    .transaction-date {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 5px;
+    }
+
+    .transaction-amount {
+      font-size: 13px;
+      font-weight: 750;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .credit {
+      color: var(--green);
+    }
+
+    .debit {
+      color: var(--red);
+    }
+
+    .transaction-status {
+      color: var(--muted);
+      font-size: 10px;
+      margin-top: 5px;
+      text-align: right;
+    }
+
+    .transfer-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 23px;
+      margin-bottom: 25px;
+    }
+
+    .transfer-card > p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 8px 0 20px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 17px;
+    }
+
+    .field label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #425047;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      min-width: 0;
+      border: 1px solid #dbe4dd;
+      border-radius: 9px;
+      padding: 13px;
+      outline: none;
+      color: var(--text);
+      background: white;
+      font-size: 14px;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(8,123,70,.08);
+    }
+
+    .primary-button {
+      width: 100%;
+      border: 0;
+      border-radius: 10px;
+      background: var(--green);
+      color: white;
+      font-weight: 750;
+      padding: 15px;
+      font-size: 14px;
+    }
+
+    .primary-button:hover {
+      background: var(--dark-green);
+    }
+
+    .result {
+      display: none;
+      margin-top: 18px;
+      border: 1px solid #b8e4c9;
+      background: #f0faf3;
+      color: #155e36;
+      padding: 18px;
+      border-radius: 12px;
+      line-height: 1.7;
+      overflow-wrap: anywhere;
+    }
+
+    .result h4 {
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    .result p {
+      font-size: 13px;
+    }
+
+    .result .reference {
+      font-weight: 750;
+      margin-top: 8px;
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 11px;
+      padding: 15px 0 30px;
+      line-height: 1.7;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 800px) {
+      .layout {
+        display: block;
+      }
+
+      .sidebar {
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+        padding: 10px 12px;
+        display: flex;
+        gap: 7px;
+        overflow-x: auto;
+      }
+
+      .menu-label,
+      .sidebar-note {
+        display: none;
+      }
+
+      .nav-button {
+        width: auto;
+        white-space: nowrap;
+        margin: 0;
+        padding: 11px 13px;
+        font-size: 12px;
+      }
+
+      main {
+        padding: 24px 16px;
+      }
+
+      .welcome h2 {
+        font-size: 23px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .topbar {
+        padding: 12px 15px;
+      }
+
+      .brand h1 {
+        font-size: 14px;
+      }
+
+      .brand p {
+        font-size: 10px;
+      }
+
+      .logo {
+        width: 39px;
+        height: 39px;
+      }
+
+      .profile {
+        font-size: 11px;
+        padding: 9px 10px;
+      }
+
+      .welcome {
+        align-items: flex-start;
+      }
+
+      .date-label {
+        font-size: 10px;
+        max-width: 95px;
+      }
+
+      .balance-card {
+        padding: 22px 19px;
+      }
+
+      .stats {
+        gap: 8px;
+      }
+
+      .stat-card {
+        padding: 12px 10px;
+      }
+
+      .stat-icon {
+        width: 31px;
+        height: 31px;
+        margin-bottom: 10px;
+      }
+
+      .stat-card p {
+        font-size: 10px;
+      }
+
+      .stat-card h3 {
+        font-size: 15px;
+      }
+
+      .transaction {
+        padding: 14px 12px;
+      }
+
+      .transaction-icon {
+        width: 36px;
+        height: 36px;
+      }
+
+      .transaction-name {
+        font-size: 12px;
+      }
+
+      .transaction-amount {
+        font-size: 12px;
+      }
+
+      .transfer-card {
+        padding: 17px 14px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+    }
+  </style>
 </head>
 <body>
-<header><div class="brand"><div class="logo">L</div><div>LCNB <span style="color:#263b30">National Bank</span></div></div><div class="avatar">EB</div></header>
-<main>
-<div class="hello">MONDAY, YOUR MONEY AT A GLANCE</div>
-<h1>Welcome back, Eric 👋</h1>
-<section class="balance">
-<div class="balance-top"><span>Total available balance</span><span class="pill">● Demo account</span></div>
-<div class="balance-amount" id="balance">$12,480.50</div>
-<div class="account-no">Checking account · •••• 4821</div>
-</section>
-<div class="actions">
-<button class="action" onclick="openModal('deposit')"><span>＋</span>Deposit</button>
-<button class="action" onclick="openModal('transfer')"><span>⇄</span>Transfer</button>
-<button class="action" onclick="showActivity()"><span>↗</span>Activity</button>
-<button class="action" onclick="showDetails()"><span>▤</span>Accounts</button>
-</div>
-<div class="section-title"><h2>Account overview</h2><span class="small">DEMO</span></div>
-<section class="panel">
-<div class="statrow"><span class="muted">Checking •••• 4821</span><strong id="checking">$8,240.50</strong></div>
-<div class="statrow"><span class="muted">Savings •••• 1906</span><strong>$4,240.00</strong></div>
-<div class="statrow"><span class="muted">Account status</span><strong style="color:#087443">Demo active</strong></div>
-</section>
-<div class="section-title" id="activity"><h2>Recent transactions</h2><span class="small">This account</span></div>
-<section class="panel" id="transactions">
-<div class="tx"><div class="txicon">🛒</div><div class="txinfo"><strong>Grocery Store</strong><small>Today · Shopping</small></div><div class="amount outcome">−$64.25</div></div>
-<div class="tx"><div class="txicon">💼</div><div class="txinfo"><strong>Salary payment</strong><small>Yesterday · Income</small></div><div class="amount income">+$2,850.00</div></div>
-<div class="tx"><div class="txicon">⚡</div><div class="txinfo"><strong>Electricity bill</strong><small>Oct 15 · Utilities</small></div><div class="amount outcome">−$92.40</div></div>
-<div class="tx"><div class="txicon">☕</div><div class="txinfo"><strong>Coffee House</strong><small>Oct 14 · Food & drink</small></div><div class="amount outcome">−$8.75</div></div>
-</section>
-<div class="notice"><strong>Simulation only:</strong> LCNB National Bank is a fictional banking demo. All balances and transactions are illustrative. Deposits and transfers change only this demo page; no real money moves and no bank or payment service is connected.</div>
-</main>
-<footer>LCNB National Bank · Fictional demonstration interface · © 2026</footer>
-<div class="modal" id="modal"><div class="dialog"><h2 id="modalTitle">Make a deposit</h2><p id="modalDescription">Enter an amount to simulate this action.</p><form id="bankForm"><label for="amount">Amount (USD)</label><input id="amount" type="number" min="0.01" step="0.01" placeholder="e.g. 100.00" required><div id="recipientWrap" style="display:none"><label for="recipient">Demo recipient</label><input id="recipient" maxlength="40" placeholder="e.g. Rent payment"></div><button class="btn" type="submit">Confirm demo action</button></form><button class="btn cancel" onclick="closeModal()">Cancel</button></div></div>
-<script>
-let balance=12480.50,checking=8240.50,mode='deposit';
-function money(n){return n.toLocaleString('en-US',{style:'currency',currency:'USD'})}
-function updateBalance(){document.getElementById('balance').textContent=money(balance);document.getElementById('checking').textContent=money(checking)}
-function openModal(m){mode=m;document.getElementById('modalTitle').textContent=m==='deposit'?'Simulate a deposit':'Simulate a transfer';document.getElementById('modalDescription').textContent=m==='deposit'?'Add fictional funds to this demo checking balance.':'Subtract fictional funds from this demo checking balance.';document.getElementById('recipientWrap').style.display=m==='transfer'?'block':'none';document.getElementById('recipient').required=m==='transfer';document.getElementById('modal').classList.add('open')}
-function closeModal(){document.getElementById('modal').classList.remove('open')}
-function addTransaction(title,amount,income){let row=document.createElement('div');row.className='tx';let icon=document.createElement('div');icon.className='txicon';icon.textContent=income?'＋':'⇄';let info=document.createElement('div');info.className='txinfo';let strong=document.createElement('strong');strong.textContent=title;let small=document.createElement('small');small.textContent='Just now · Simulated';info.append(strong,small);let val=document.createElement('div');val.className='amount '+(income?'income':'outcome');val.textContent=(income?'+':'−')+money(amount);row.append(icon,info,val);document.getElementById('transactions').prepend(row)}
-document.getElementById('bankForm').addEventListener('submit',function(e){e.preventDefault();let amount=Number(document.getElementById('amount').value);if(!Number.isFinite(amount)||amount<=0){alert('Enter a valid amount.');return}if(mode==='transfer'&&amount>checking){alert('Insufficient demo checking balance.');return}if(mode==='deposit'){balance+=amount;checking+=amount;addTransaction('Demo deposit',amount,true)}else{checking-=amount;balance-=amount;addTransaction('Transfer: '+(document.getElementById('recipient').value||'Demo recipient'),amount,false)}updateBalance();closeModal();this.reset();alert('Demo action complete. No real money was moved.')});
-function showActivity(){document.getElementById('activity').scrollIntoView({behavior:'smooth'})}
-function showDetails(){alert('Demo accounts only. Checking: '+money(checking)+'. Savings: $4,240.00. No real bank accounts are connected.')}
-</script>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">P</div>
+      <div>
+        <h1>Pacidexunion Banking</h1>
+        <p>Personal banking dashboard · Demo</p>
+      </div>
+    </div>
+    <div class="profile">● Demo User</div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <p class="menu-label">Main menu</p>
+      <button class="nav-button active" data-target="dashboard">
+        <span>▦</span> Dashboard
+      </button>
+      <button class="nav-button" data-target="transactions">
+        <span>↕</span> Transactions
+      </button>
+      <button class="nav-button" data-target="transfer">
+        <span>⇄</span> Transfers
+      </button>
+      <button class="nav-button" data-target="account">
+        <span>♙</span> Account details
+      </button>
+
+      <div class="sidebar-note">
+        <strong>Portfolio preview</strong><br>
+        This fictional banking interface demonstrates a dashboard and
+        simulated transfers. It is not a real financial institution.
+      </div>
+    </aside>
+
+    <main>
+      <section id="dashboard">
+        <div class="welcome">
+          <div>
+            <h2>Good morning!</h2>
+            <p>Welcome to your banking overview.</p>
+          </div>
+          <div class="date-label" id="today"></div>
+        </div>
+
+        <div class="demo-banner">
+          <strong>Portfolio demonstration:</strong> All balances and
+          transactions shown here are sample data. Transfers are simulated
+          locally and do not send money.
+        </div>
+
+        <div class="balance-card">
+          <div class="balance-heading">
+            <p>Available demo balance</p>
+            <span class="demo-tag">SAMPLE ACCOUNT</span>
+          </div>
+
+          <div class="balance" id="balance">$897,788.27</div>
+
+          <div class="balance-bottom">
+            <div>
+              <div class="account-label">Account holder</div>
+              <div class="account-value">Demo Customer</div>
+            </div>
+            <div>
+              <div class="account-label">Demo account ID</div>
+              <div class="account-value">PDX-2048</div>
+            </div>
+            <div class="status">● Demo active</div>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat-card">
+            <div class="stat-icon">↗</div>
+            <p>Sample income</p>
+            <h3 class="credit">$12,450.00</h3>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">↙</div>
+            <p>Sample spending</p>
+            <h3>$3,215.40</h3>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">▤</div>
+            <p>Transactions</p>
+            <h3 id="transaction-count">4</h3>
+          </div>
+        </div>
+
+        <div class="section-heading">
+          <h3>Recent transactions</h3>
+          <button class="small-button" data-go="transactions">View all</button>
+        </div>
+
+        <div class="transactions" id="transaction-list">
+          <div class="transaction">
+            <div class="transaction-left">
+              <div class="transaction-icon">↗</div>
+              <div>
+                <div class="transaction-name">Sample salary deposit</div>
+                <div class="transaction-date">Oct 15, 2026 · Sample entry</div>
+              </div>
+            </div>
+            <div>
+              <div class="transaction-amount credit">+$8,500.00</div>
+              <div class="transaction-status">Demo record</div>
+            </div>
+          </div>
+
+          <div class="transaction">
+            <div class="transaction-left">
+              <div class="transaction-icon">🛒</div>
+              <div>
+                <div class="transaction-name">Shopping purchase</div>
+                <div class="transaction-date">Oct 13, 2026 · Sample entry</div>
+              </div>
+            </div>
+            <div>
+              <div class="transaction-amount debit">−$245.60</div>
+              <div class="transaction-status">Demo record</div>
+            </div>
+          </div>
+
+          <div class="transaction">
+            <div class="transaction-left">
+              <div class="transaction-icon">⚡</div>
+              <div>
+                <div class="transaction-name">Utility payment</div>
+                <div class="transaction-date">Oct 11, 2026 · Sample entry</div>
+              </div>
+            </div>
+            <div>
+              <div class="transaction-amount debit">−$125.00</div>
+              <div class="transaction-status">Demo record</div>
+            </div>
+          </div>
+
+          <div class="transaction">
+            <div class="transaction-left">
+              <div class="transaction-icon">↗</div>
+              <div>
+                <div class="transaction-name">Sample refund</div>
+                <div class="transaction-date">Oct 08, 2026 · Sample entry</div>
+              </div>
+            </div>
+            <div>
+              <div class="transaction-amount credit">+$180.00</div>
+              <div class="transaction-status">Demo record</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="account" class="hidden">
+        <div class="welcome">
+          <div>
+            <h2>Account details</h2>
+            <p>Fictional account information for this demo.</p>
+          </div>
+        </div>
+
+        <div class="demo-banner">
+          These details are placeholders, not a real bank account.
+        </div>
+
+        <div class="transfer-card">
+          <div class="field">
+            <label>Bank name</label>
+            <input value="Pacidexunion Banking (Demo)" readonly>
+          </div>
+          <div class="field">
+            <label>Account holder</label>
+            <input value="Demo Customer" readonly>
+          </div>
+          <div class="field">
+            <label>Demo account ID</label>
+            <input value="PDX-2048" readonly>
+          </div>
+          <div class="field">
+            <label>Account type</label>
+            <input value="Personal checking · Sample" readonly>
+          </div>
+          <div class="field">
+            <label>Account status</label>
+            <input value="Demo active — no real funds" readonly>
+          </div>
+        </div>
+      </section>
+
+      <section id="transfer" class="hidden">
+        <div class="welcome">
+          <div>
+            <h2>Transfer simulator</h2>
+            <p>Preview a fictional transfer for your portfolio.</p>
+          </div>
+        </div>
+
+        <div class="demo-banner">
+          <strong>Simulation only.</strong> Use fictional names and demo IDs
+          only. This form does not contact a bank, submit a payment, or
+          transfer real money.
+        </div>
+
+        <div class="transfer-card">
+          <div class="section-heading">
+            <h3>New demo transfer</h3>
+          </div>
+          <p>Enter sample information to preview a simulated transfer receipt.</p>
+
+          <form id="transfer-form">
+            <div class="form-grid">
+              <div class="field">
+                <label for="recipient">Recipient name</label>
+                <input id="recipient" placeholder="e.g. Alex Demo"
+                       maxlength="70" required>
+              </div>
+
+              <div class="field">
+                <label for="bank">Demo destination bank</label>
+                <select id="bank" required>
+                  <option value="">Choose a demo bank</option>
+                  <option>Pacidexunion Banking (Demo)</option>
+                  <option>Example National Bank (Demo)</option>
+                  <option>Sample City Bank (Demo)</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="demo-id">Recipient demo ID</label>
+                <input id="demo-id" placeholder="e.g. DEMO-1024"
+                       maxlength="25" pattern="[A-Za-z0-9-]+"
+                       title="Use a fictional demo ID, letters, numbers and hyphens only."
+                       required>
+              </div>
+
+              <div class="field">
+                <label for="amount">Amount (USD)</label>
+                <input id="amount" type="number" min="0.01" max="100000"
+                       step="0.01" placeholder="0.00" required>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="note">Transfer note (optional)</label>
+              <input id="note" maxlength="100"
+                     placeholder="e.g. Portfolio test">
+            </div>
+
+            <button type="submit" class="primary-button">
+              Preview demo transfer
+            </button>
+          </form>
+
+          <div id="transfer-result" class="result" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <div class="footer">
+        Pacidexunion Banking is a fictional portfolio project.<br>
+        No real accounts, payments, or bank connections are provided.
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const today = document.getElementById("today");
+    today.textContent = new Date().toLocaleDateString("en-US", {
+      weekday: "short",
+      month: "short",
+      day: "numeric",
+      year: "numeric"
+    });
+
+    function showSection(sectionId) {
+      document.querySelectorAll("main section").forEach(section => {
+        section.classList.toggle("hidden", section.id !== sectionId);
+      });
+
+      document.querySelectorAll(".nav-button").forEach(button => {
+        button.classList.toggle(
+          "active",
+          button.dataset.target === sectionId
+        );
+      });
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    document.querySelectorAll(".nav-button").forEach(button => {
+      button.addEventListener("click", () => {
+        showSection(button.dataset.target);
+      });
+    });
+
+    document.querySelectorAll("[data-go]").forEach(button => {
+      button.addEventListener("click", () => {
+        showSection(button.dataset.go);
+      });
+    });
+
+    function escapeHTML(value) {
+      return String(value).replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+      })[char]);
+    }
+
+    document.getElementById("transfer-form").addEventListener("submit", event => {
+      event.preventDefault();
+
+      const recipient = document.getElementById("recipient").value.trim();
+      const bank = document.getElementById("bank").value;
+      const demoId = document.getElementById("demo-id").value.trim();
+      const amount = Number(document.getElementById("amount").value);
+      const note = document.getElementById("note").value.trim();
+      const result = document.getElementById("transfer-result");
+
+      if (!recipient || !bank || !demoId ||
+          !Number.isFinite(amount) || amount <= 0 || amount > 100000) {
+        result.style.display = "block";
+        result.innerHTML =
+          "<h4>Check your entries</h4>" +
+          "<p>Enter a recipient, demo bank, fictional demo ID, and a valid amount.</p>";
+        return;
+      }
+
+      const reference = "DEMO-" +
+        Date.now().toString().slice(-8) + "-" +
+        Math.random().toString(36).slice(2, 6).toUpperCase();
+
+      result.style.display = "block";
+      result.innerHTML =
+        "<h4>✓ Demo transfer preview created</h4>" +
+        "<p><strong>Status:</strong> Simulation only — no money was sent.</p>" +
+        "<p><strong>Recipient:</strong> " + escapeHTML(recipient) + "</p>" +
+        "<p><strong>Demo bank:</strong> " + escapeHTML(bank) + "</p>" +
+        "<p><strong>Recipient demo ID:</strong> " + escapeHTML(demoId) + "</p>" +
+        "<p><strong>Amount:</strong> $" + amount.toLocaleString("en-US", {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }) + " USD</p>" +
+        (note ? "<p><strong>Note:</strong> " + escapeHTML(note) + "</p>" : "") +
+        "<p class='reference'>Demo reference: " + reference + "</p>" +
+        "<p>This receipt is a local portfolio preview, not proof of a real payment.</p>";
+
+      result.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+  </script>
 </body>
 </html>
