@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#087443">
+<title>LCNB National Bank | Digital Banking</title>
+<style>
+:root{--green:#087443;--dark:#063b2b;--navy:#10264c;--bg:#f3f7f4;--text:#17251f;--muted:#748078;--white:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+header{background:var(--white);padding:17px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e5ece7}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--green);font-size:18px}
+.logo{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:var(--green);color:white;font-weight:900}
+.avatar{width:38px;height:38px;border-radius:50%;background:#e1f1e7;display:grid;place-items:center;color:var(--green);font-weight:800}
+main{max-width:760px;margin:auto;padding:22px 17px 40px}
+.hello{font-size:14px;color:var(--muted);margin-bottom:6px}
+h1{font-size:25px;margin:0 0 20px}
+.balance{background:linear-gradient(135deg,#142e59,#0a1934);color:white;border-radius:22px;padding:24px;box-shadow:0 10px 24px #12254820}
+.balance-top{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:#d5dfef}
+.balance-amount{font-size:34px;font-weight:750;letter-spacing:-1px;margin:17px 0 8px;overflow-wrap:anywhere}
+.account-no{font-size:13px;color:#d5dfef}
+.pill{font-size:12px;background:#ffffff1c;border-radius:30px;padding:7px 10px}
+.actions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:22px 0}
+.action{border:0;background:white;border-radius:15px;padding:15px 5px;color:var(--green);font-size:12px;font-weight:700;box-shadow:0 2px 8px #163b2610;cursor:pointer}
+.action span{display:block;font-size:23px;margin-bottom:8px}
+.section-title{display:flex;justify-content:space-between;align-items:center;margin:24px 0 13px}
+.section-title h2{font-size:18px;margin:0}
+.small{font-size:12px;color:var(--green)}
+.panel{background:white;border-radius:17px;padding:17px;box-shadow:0 2px 9px #163b260a}
+.statrow{display:flex;justify-content:space-between;gap:12px;margin:10px 0}
+.muted{color:var(--muted);font-size:13px}
+.tx{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid #edf1ee}
+.tx:last-child{border-bottom:0;padding-bottom:0}
+.txicon{width:42px;height:42px;flex-shrink:0;display:grid;place-items:center;border-radius:13px;background:#e8f5ec;font-size:19px}
+.txinfo{flex:1;min-width:0}
+.txinfo strong{display:block;font-size:14px;margin-bottom:4px}
+.txinfo small{font-size:12px;color:var(--muted)}
+.amount{font-size:14px;font-weight:750;white-space:nowrap}
+.income{color:var(--green)}.outcome{color:#243448}
+.notice{font-size:12px;line-height:1.5;color:#52645a;background:#e7f2ea;padding:13px;border-radius:12px;margin-top:20px}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:15px}
+.modal{display:none;position:fixed;inset:0;background:#061b12a6;z-index:5;padding:20px;align-items:center;justify-content:center}
+.modal.open{display:flex}
+.dialog{background:white;border-radius:20px;padding:23px;width:100%;max-width:420px}
+.dialog h2{margin:0 0 8px;font-size:21px}
+.dialog p{color:var(--muted);font-size:13px;line-height:1.5}
+label{display:block;font-size:13px;font-weight:700;margin:15px 0 7px}
+input{width:100%;padding:13px;border:1px solid #d8e2db;border-radius:10px;font:inherit}
+.btn{width:100%;padding:13px;border:0;border-radius:11px;background:var(--green);color:white;font-weight:750;font-size:15px;margin-top:16px;cursor:pointer}
+.cancel{background:#edf2ee;color:#243b2e;margin-top:9px}
+@media(max-width:360px){.balance-amount{font-size:28px}.actions{gap:6px}.action{font-size:11px;padding:12px 2px}main{padding:18px 12px}}
+</style>
+</head>
+<body>
+<header><div class="brand"><div class="logo">L</div><div>LCNB <span style="color:#263b30">National Bank</span></div></div><div class="avatar">EB</div></header>
+<main>
+<div class="hello">MONDAY, YOUR MONEY AT A GLANCE</div>
+<h1>Welcome back, Eric 👋</h1>
+<section class="balance">
+<div class="balance-top"><span>Total available balance</span><span class="pill">● Demo account</span></div>
+<div class="balance-amount" id="balance">$12,480.50</div>
+<div class="account-no">Checking account · •••• 4821</div>
+</section>
+<div class="actions">
+<button class="action" onclick="openModal('deposit')"><span>＋</span>Deposit</button>
+<button class="action" onclick="openModal('transfer')"><span>⇄</span>Transfer</button>
+<button class="action" onclick="showActivity()"><span>↗</span>Activity</button>
+<button class="action" onclick="showDetails()"><span>▤</span>Accounts</button>
+</div>
+<div class="section-title"><h2>Account overview</h2><span class="small">DEMO</span></div>
+<section class="panel">
+<div class="statrow"><span class="muted">Checking •••• 4821</span><strong id="checking">$8,240.50</strong></div>
+<div class="statrow"><span class="muted">Savings •••• 1906</span><strong>$4,240.00</strong></div>
+<div class="statrow"><span class="muted">Account status</span><strong style="color:#087443">Demo active</strong></div>
+</section>
+<div class="section-title" id="activity"><h2>Recent transactions</h2><span class="small">This account</span></div>
+<section class="panel" id="transactions">
+<div class="tx"><div class="txicon">🛒</div><div class="txinfo"><strong>Grocery Store</strong><small>Today · Shopping</small></div><div class="amount outcome">−$64.25</div></div>
+<div class="tx"><div class="txicon">💼</div><div class="txinfo"><strong>Salary payment</strong><small>Yesterday · Income</small></div><div class="amount income">+$2,850.00</div></div>
+<div class="tx"><div class="txicon">⚡</div><div class="txinfo"><strong>Electricity bill</strong><small>Oct 15 · Utilities</small></div><div class="amount outcome">−$92.40</div></div>
+<div class="tx"><div class="txicon">☕</div><div class="txinfo"><strong>Coffee House</strong><small>Oct 14 · Food & drink</small></div><div class="amount outcome">−$8.75</div></div>
+</section>
+<div class="notice"><strong>Simulation only:</strong> LCNB National Bank is a fictional banking demo. All balances and transactions are illustrative. Deposits and transfers change only this demo page; no real money moves and no bank or payment service is connected.</div>
+</main>
+<footer>LCNB National Bank · Fictional demonstration interface · © 2026</footer>
+<div class="modal" id="modal"><div class="dialog"><h2 id="modalTitle">Make a deposit</h2><p id="modalDescription">Enter an amount to simulate this action.</p><form id="bankForm"><label for="amount">Amount (USD)</label><input id="amount" type="number" min="0.01" step="0.01" placeholder="e.g. 100.00" required><div id="recipientWrap" style="display:none"><label for="recipient">Demo recipient</label><input id="recipient" maxlength="40" placeholder="e.g. Rent payment"></div><button class="btn" type="submit">Confirm demo action</button></form><button class="btn cancel" onclick="closeModal()">Cancel</button></div></div>
+<script>
+let balance=12480.50,checking=8240.50,mode='deposit';
+function money(n){return n.toLocaleString('en-US',{style:'currency',currency:'USD'})}
+function updateBalance(){document.getElementById('balance').textContent=money(balance);document.getElementById('checking').textContent=money(checking)}
+function openModal(m){mode=m;document.getElementById('modalTitle').textContent=m==='deposit'?'Simulate a deposit':'Simulate a transfer';document.getElementById('modalDescription').textContent=m==='deposit'?'Add fictional funds to this demo checking balance.':'Subtract fictional funds from this demo checking balance.';document.getElementById('recipientWrap').style.display=m==='transfer'?'block':'none';document.getElementById('recipient').required=m==='transfer';document.getElementById('modal').classList.add('open')}
+function closeModal(){document.getElementById('modal').classList.remove('open')}
+function addTransaction(title,amount,income){let row=document.createElement('div');row.className='tx';let icon=document.createElement('div');icon.className='txicon';icon.textContent=income?'＋':'⇄';let info=document.createElement('div');info.className='txinfo';let strong=document.createElement('strong');strong.textContent=title;let small=document.createElement('small');small.textContent='Just now · Simulated';info.append(strong,small);let val=document.createElement('div');val.className='amount '+(income?'income':'outcome');val.textContent=(income?'+':'−')+money(amount);row.append(icon,info,val);document.getElementById('transactions').prepend(row)}
+document.getElementById('bankForm').addEventListener('submit',function(e){e.preventDefault();let amount=Number(document.getElementById('amount').value);if(!Number.isFinite(amount)||amount<=0){alert('Enter a valid amount.');return}if(mode==='transfer'&&amount>checking){alert('Insufficient demo checking balance.');return}if(mode==='deposit'){balance+=amount;checking+=amount;addTransaction('Demo deposit',amount,true)}else{checking-=amount;balance-=amount;addTransaction('Transfer: '+(document.getElementById('recipient').value||'Demo recipient'),amount,false)}updateBalance();closeModal();this.reset();alert('Demo action complete. No real money was moved.')});
+function showActivity(){document.getElementById('activity').scrollIntoView({behavior:'smooth'})}
+function showDetails(){alert('Demo accounts only. Checking: '+money(checking)+'. Savings: $4,240.00. No real bank accounts are connected.')}
+</script>
+</body>
+</html>
